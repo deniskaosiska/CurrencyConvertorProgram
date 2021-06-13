@@ -16,7 +16,45 @@ public class Main {
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
     }
+    // If user choose 1 shekels to dollars
+    static void ilsToUsd() {
+        System.out.println("Please enter an amount to convert");
+        Scanner scanner2 = new Scanner(System.in);
+        double input = scanner2.nextDouble();
 
+        Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
+
+        double value = ilsValue.calculate(input);
+        System.out.println(value);
+        MyList.add(value);
+        System.out.println("Start over Y/N?");
+        Scanner scanner3 = new Scanner(System.in);
+        String overAgain = scanner3.next();
+        if (overAgain.equalsIgnoreCase("Y")) {
+            startOver();
+        } else if (overAgain.equalsIgnoreCase("N")) {
+             endScreen();
+        }
+    }
+        //If user choose 2, dollars to shekels
+         static void usdToils() {
+            System.out.println("Please enter an amount to convert");
+            Scanner scanner5 = new Scanner(System.in);
+            double input = scanner5.nextDouble();
+
+            Coin usdValue = CoinsFactory.getCoinInstance(Coins.ILS);
+            double value = usdValue.calculate(input);
+            System.out.println(value);
+            MyList.add(value);
+            System.out.println("Start over Y/N?");
+            Scanner scanner3 = new Scanner(System.in);
+            String overAgain = scanner3.next();
+            if (overAgain.equalsIgnoreCase("Y")) {
+                startOver();
+            } else if (overAgain.equalsIgnoreCase("N")) {
+                 endScreen();
+            }
+        }
 
 
     //If user choose finish the program
@@ -51,45 +89,18 @@ public class Main {
         Scanner scanner1 = new Scanner(System.in);
         int choose = scanner1.nextInt();
         if (choose == 1) {
-            System.out.println("Please enter an amount to convert");
-            Scanner scanner2 = new Scanner(System.in);
-            double input = scanner2.nextDouble();
-
-            Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
-
-            double value = ilsValue.calculate(input);
-            System.out.println(value);
-            MyList.add(value);
-            System.out.println("Start over Y/N?");
-            Scanner scanner3 = new Scanner(System.in);
-            String overAgain = scanner3.next();
-            if (overAgain.equalsIgnoreCase("Y")) {
-                startOver();
-            } else if (overAgain.equalsIgnoreCase("N")) {
-                endScreen();
-            } else {
-                System.out.println("Invalid choice, please enter again Y or N");
-                Scanner scanner4 = new Scanner(System.in);
-                String overAgain1 = scanner4.next();
-                if (overAgain1.equalsIgnoreCase("Y")) {
-                    startOver();
-                } else if (overAgain.equalsIgnoreCase("N")) {
-                    endScreen();
-                } else if (choose == 2) {
-                    System.out.println("Please enter an amount to convert");
-                    Scanner scanner5 = new Scanner(System.in);
-                    double input = scanner5.nextDouble();
-
-                    Coin usdValue = CoinsFactory.getCoinInstance(Coins.ILS);
-                    double value = usdValue.calculate(input);
-                    System.out.println(value);
+           ilsToUsd();
+            } else if (choose == 2) {
+                    usdToils();
                 } else {
                     System.out.println("Invalid choice, please try again");
+
                 }
 
             }
 
         }
 
-    }
-}
+
+
+
