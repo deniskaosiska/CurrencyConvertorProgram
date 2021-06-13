@@ -25,18 +25,10 @@ public class Main {
                 System.out.println(MyList.get(i));
             }
         }
-        FileWriter newFile = null;
-        try {
-            newFile = new FileWriter("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        FileWriter newFile = new FileWriter("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt");
         BufferedWriter bw = new BufferedWriter(newFile);
-        try {
-            bw.write(MyList.size());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        bw.write(MyList.size());
+        bw.close();
     }
 
     public static void main(String[] args) {
