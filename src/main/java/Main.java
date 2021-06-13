@@ -17,6 +17,8 @@ public class Main {
         System.out.println("2. Shekels to Dollars");
     }
 
+
+
     //If user choose finish the program
     static void endScreen() {
         System.out.println("Thanks for using our currency convertor");
@@ -25,10 +27,20 @@ public class Main {
                 System.out.println(MyList.get(i));
             }
         }
-        FileWriter newFile = new FileWriter("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt");
+        FileWriter newFile = null;
+        try {
+            newFile = new FileWriter("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         BufferedWriter bw = new BufferedWriter(newFile);
-        bw.write(MyList.size());
-        bw.close();
+        try {
+            bw.write(MyList.size());
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public static void main(String[] args) {
@@ -44,7 +56,8 @@ public class Main {
             double input = scanner2.nextDouble();
 
             Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
-            double value = USD.calculate(input);
+
+            double value = ilsValue.calculate(input);
             System.out.println(value);
             MyList.add(value);
             System.out.println("Start over Y/N?");
@@ -56,19 +69,19 @@ public class Main {
                 endScreen();
             } else {
                 System.out.println("Invalid choice, please enter again Y or N");
-                Scanner scanner3 = new Scanner(System.in);
-                String overAgain = scanner3.next();
-                if (overAgain.equalsIgnoreCase("Y")) {
+                Scanner scanner4 = new Scanner(System.in);
+                String overAgain1 = scanner4.next();
+                if (overAgain1.equalsIgnoreCase("Y")) {
                     startOver();
                 } else if (overAgain.equalsIgnoreCase("N")) {
                     endScreen();
                 } else if (choose == 2) {
                     System.out.println("Please enter an amount to convert");
-                    Scanner scanner2 = new Scanner(System.in);
-                    double input = scanner2.nextDouble();
+                    Scanner scanner5 = new Scanner(System.in);
+                    double input = scanner5.nextDouble();
 
                     Coin usdValue = CoinsFactory.getCoinInstance(Coins.ILS);
-                    double value = ILS.calculate(input);
+                    double value = usdValue.calculate(input);
                     System.out.println(value);
                 } else {
                     System.out.println("Invalid choice, please try again");
