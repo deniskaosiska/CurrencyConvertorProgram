@@ -65,6 +65,23 @@ public class Main {
                  endScreen();
             }
         }
+        //Choosing amount program
+    static void chooseProgram(){
+        System.out.println("Please choose an option (1/2):");
+        System.out.println("1. Dollars to Shekels");
+        System.out.println("2. Shekels to Dollars");
+        Scanner scanner1 = new Scanner(System.in);
+        int choose = scanner1.nextInt();
+        if (choose == 1) {
+            ilsToUsd();
+        } else if (choose == 2) {
+            usdToils();
+        } else {
+            System.out.println("Invalid choice, please try again");
+            chooseProgram();
+
+        }
+    }
 
 
     //If user choose finish the program
@@ -109,6 +126,7 @@ public class Main {
                     usdToils();
                 } else {
                     System.out.println("Invalid choice, please try again");
+                    chooseProgram();
 
                 }
 
