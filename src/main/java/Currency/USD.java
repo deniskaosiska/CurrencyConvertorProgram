@@ -2,7 +2,9 @@ package Currency;
 
 import com.sun.tools.javac.Main;
 
-public class USD extends Coin{
+import java.io.Serializable;
+
+public class USD extends Coin implements Serializable {
     final double value = 3.52;
     //Method that come from Coin class
     @Override

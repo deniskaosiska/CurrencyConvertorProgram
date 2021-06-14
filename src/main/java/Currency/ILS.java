@@ -1,6 +1,8 @@
 package Currency;
 
-public class ILS extends Coin{
+import java.io.Serializable;
+
+public class ILS extends Coin implements Serializable {
     final double value = 0.28;
 //Method that come from Coin class
     @Override
