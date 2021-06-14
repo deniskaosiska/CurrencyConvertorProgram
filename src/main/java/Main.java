@@ -15,6 +15,16 @@ public class Main {
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
+        Scanner scanner1 = new Scanner(System.in);
+        int choose = scanner1.nextInt();
+        if (choose == 1) {
+            ilsToUsd();
+        } else if (choose == 2) {
+            usdToils();
+        } else {
+            System.out.println("Invalid choice, please try again");
+
+        }
     }
     // If user choose 1 shekels to dollars
     static void ilsToUsd() {
@@ -61,9 +71,7 @@ public class Main {
     static void endScreen() {
         System.out.println("Thanks for using our currency convertor");
         for (int i = 0; i < MyList.size(); i++) {
-            if (i == 1) {
                 System.out.println(MyList.get(i));
-            }
         }
         FileWriter newFile = null;
         try {
@@ -73,8 +81,15 @@ public class Main {
         }
         BufferedWriter bw = new BufferedWriter(newFile);
         try {
-            bw.write(MyList.size());
-            bw.close();
+            int size = MyList.size();
+            for (int i=0;i<size;i++) {
+                String str = MyList.get(i).toString();
+                newFile.write(str);
+                if(i < size-1) {//This prevent creating a blank like at the end of the file**
+                    newFile.write("\n");
+                }
+            }
+            newFile.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
