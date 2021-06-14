@@ -1,6 +1,8 @@
 import Currency.*;
+import org.testng.annotations.Test;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -106,12 +108,45 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //Bonus open file from code
+        try {
+            String path = "C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt";
+            File file = new File(path);
+            if(file.exists()){
+                Process pro = Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " +path);
+                pro. waitFor();
+            } else {
+                System.out.println("File does not exist");
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
         System.out.println("Welcome to currency convertor");
         chooseProgram();
             }
+
+//            @Test (priority = 1)
+//            void enterValue() {
+//                Main ilstousd = new Main();
+//                double imported =
+//                double expect =
+//
+//            }
+//
+//            @Test (priority = 2)
+//            void assertResult(){
+//
+//            }
+//
+//            @Test (priority = 3)
+//            void contentResult(){
+//
+//            }
+
+
         }
 
 
