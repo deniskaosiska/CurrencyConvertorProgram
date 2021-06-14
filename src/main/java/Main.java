@@ -23,7 +23,6 @@ public class Main {
             usdToils();
         } else {
             System.out.println("Invalid choice, please try again");
-
         }
     }
     // If user choose 1 shekels to dollars
@@ -31,19 +30,17 @@ public class Main {
         System.out.println("Please enter an amount to convert");
         Scanner scanner2 = new Scanner(System.in);
         double input = scanner2.nextDouble();
-
         Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
-
         double value = ilsValue.calculate(input);
-        System.out.println(value);
-        MyList.add(value);
+        System.out.println(value);//Print result of convert
+        MyList.add(value);//Add result to list of converts
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
         if (overAgain.equalsIgnoreCase("Y")) {
-            startOver();
+            startOver();//Go to begining of program without Welcome
         } else if (overAgain.equalsIgnoreCase("N")) {
-             endScreen();
+             endScreen();//Go to Fourth screen(end screen)
         }
     }
         //If user choose 2, dollars to shekels
@@ -51,18 +48,17 @@ public class Main {
             System.out.println("Please enter an amount to convert");
             Scanner scanner5 = new Scanner(System.in);
             double input = scanner5.nextDouble();
-
             Coin usdValue = CoinsFactory.getCoinInstance(Coins.ILS);
             double value = usdValue.calculate(input);
-            System.out.println(value);
-            MyList.add(value);
+            System.out.println(value);//Print result of convert
+            MyList.add(value);//Add result to list of converts
             System.out.println("Start over Y/N?");
             Scanner scanner3 = new Scanner(System.in);
             String overAgain = scanner3.next();
             if (overAgain.equalsIgnoreCase("Y")) {
-                startOver();
+                startOver();//Go to begining of program without Welcome
             } else if (overAgain.equalsIgnoreCase("N")) {
-                 endScreen();
+                 endScreen();//Go to Fourth screen(end screen)
             }
         }
         //Choosing amount program
@@ -73,13 +69,12 @@ public class Main {
         Scanner scanner1 = new Scanner(System.in);
         int choose = scanner1.nextInt();
         if (choose == 1) {
-            ilsToUsd();
+            ilsToUsd();//Go to method that convert shekels to dollars
         } else if (choose == 2) {
-            usdToils();
+            usdToils();//Go to method that convert dollars to shekels
         } else {
             System.out.println("Invalid choice, please try again");
-            chooseProgram();
-
+            chooseProgram();//Start this.method again
         }
     }
 
@@ -89,6 +84,7 @@ public class Main {
         for (int i = 0; i < MyList.size(); i++) {
                 System.out.println(MyList.get(i));
         }
+        //Creating Result.txt file with list of converstions
         FileWriter newFile = null;
         try {
             newFile = new FileWriter("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt");
@@ -96,6 +92,7 @@ public class Main {
             e.printStackTrace();
         }
         BufferedWriter bw = new BufferedWriter(newFile);
+        //Write all conversitions that user did
         try {
             int size = MyList.size();
             for (int i=0;i<size;i++) {
@@ -109,7 +106,6 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void main(String[] args) {
