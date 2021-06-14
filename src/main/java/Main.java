@@ -8,10 +8,10 @@ import java.util.Scanner;
 
 public class Main {
     //List of results
-    static ArrayList<Double> MyList = new ArrayList<>();
+    private static ArrayList<Double> MyList = new ArrayList<>();
 
     // If user choose start over the convertor
-    static void startOver() {
+    private static void startOver() {
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
@@ -27,7 +27,7 @@ public class Main {
         }
     }
     // If user choose 1 shekels to dollars
-    static void ilsToUsd() {
+    private static void ilsToUsd() {
         System.out.println("Please enter an amount to convert");
         Scanner scanner2 = new Scanner(System.in);
         double input = scanner2.nextDouble();
@@ -47,7 +47,7 @@ public class Main {
         }
     }
         //If user choose 2, dollars to shekels
-         static void usdToils() {
+         private static void usdToils() {
             System.out.println("Please enter an amount to convert");
             Scanner scanner5 = new Scanner(System.in);
             double input = scanner5.nextDouble();
@@ -66,7 +66,7 @@ public class Main {
             }
         }
         //Choosing amount program
-    static void chooseProgram(){
+    private static void chooseProgram(){
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
@@ -83,9 +83,8 @@ public class Main {
         }
     }
 
-
     //If user choose finish the program
-    static void endScreen() {
+    private static void endScreen() {
         System.out.println("Thanks for using our currency convertor");
         for (int i = 0; i < MyList.size(); i++) {
                 System.out.println(MyList.get(i));
@@ -102,7 +101,7 @@ public class Main {
             for (int i=0;i<size;i++) {
                 String str = MyList.get(i).toString();
                 newFile.write(str);
-                if(i < size-1) {//This prevent creating a blank like at the end of the file**
+                if(i < size-1) {//This prevent creating a blank like at the end of the file
                     newFile.write("\n");
                 }
             }
@@ -115,23 +114,8 @@ public class Main {
 
     public static void main(String[] args) {
         System.out.println("Welcome to currency convertor");
-        System.out.println("Please choose an option (1/2):");
-        System.out.println("1. Dollars to Shekels");
-        System.out.println("2. Shekels to Dollars");
-        Scanner scanner1 = new Scanner(System.in);
-        int choose = scanner1.nextInt();
-        if (choose == 1) {
-           ilsToUsd();
-            } else if (choose == 2) {
-                    usdToils();
-                } else {
-                    System.out.println("Invalid choice, please try again");
-                    chooseProgram();
-
-                }
-
+        chooseProgram();
             }
-
         }
 
 
