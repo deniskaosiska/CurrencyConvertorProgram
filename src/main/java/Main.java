@@ -9,10 +9,14 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    //List of results
+    /**List of results
+     *
+     */
     private static ArrayList<Double> MyList = new ArrayList<>();
 
-    // If user choose start over the convertor
+    /** If user choose start over the convertor
+     *
+     */
     private static void startOver() {
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
@@ -27,7 +31,10 @@ public class Main {
             System.out.println("Invalid choice, please try again");
         }
     }
-    // If user choose 1 shekels to dollars
+
+    /** If user choose 1 shekels to dollars
+     *
+     */
     private static void ilsToUsd() {
         System.out.println("Please enter an amount to convert");
         Scanner scanner2 = new Scanner(System.in);
@@ -45,8 +52,11 @@ public class Main {
              endScreen();//Go to Fourth screen(end screen)
         }
     }
-        //If user choose 2, dollars to shekels
-         private static void usdToils() {
+
+    /**If user choose 2, dollars to shekels
+     *
+     */
+    private static void usdToils() {
             System.out.println("Please enter an amount to convert");
             Scanner scanner5 = new Scanner(System.in);
             double input = scanner5.nextDouble();
@@ -63,7 +73,10 @@ public class Main {
                  endScreen();//Go to Fourth screen(end screen)
             }
         }
-    //If user choose 3, shekels to euro
+
+    /**If user choose 3, shekels to euro
+     *
+     */
     private static void ilsToEur() {
         System.out.println("Please enter an amount to convert");
         Scanner scanner5 = new Scanner(System.in);
@@ -81,7 +94,10 @@ public class Main {
             endScreen();//Go to Fourth screen(end screen)
         }
     }
-        //Choosing amount program
+
+    /**Choosing amount program
+     *
+     */
     private static void chooseProgram(){
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
@@ -101,13 +117,17 @@ public class Main {
         }
     }
 
-    //If user choose finish the program
+    /**If user choose finish the program
+     *
+     */
     private static void endScreen() {
         System.out.println("Thanks for using our currency convertor");
         for (int i = 0; i < MyList.size(); i++) {
                 System.out.println(MyList.get(i));
         }
-        //Creating Result.txt file with list of converstions
+        /**
+         * Creating Result.txt file with list of converstions
+         */
         FileWriter newFile = null;
         try {
             newFile = new FileWriter("C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt");
@@ -115,7 +135,9 @@ public class Main {
             e.printStackTrace();
         }
         BufferedWriter bw = new BufferedWriter(newFile);
-        //Write all conversitions that user did
+        /**
+         * Write all conversitions that user did
+         */
         try {
             int size = MyList.size();
             for (int i=0;i<size;i++) {
@@ -129,7 +151,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //Bonus open file from code
+        /**
+         * Bonus open file from code
+         */
         try {
             String path = "C:\\Users\\Denis.Kozyra\\OneDrive - xcircular.com\\Desktop\\results.txt";
             File file = new File(path);
