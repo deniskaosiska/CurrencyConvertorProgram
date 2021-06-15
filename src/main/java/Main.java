@@ -145,6 +145,11 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        /**
+         * This is start point of my Code
+         * @author Denis Kozyra
+         * @version 1.0
+         */
         System.out.println("Welcome to currency convertor");
         chooseProgram();
             }
