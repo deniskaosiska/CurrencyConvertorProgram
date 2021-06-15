@@ -43,6 +43,7 @@ public class Main {
         double value = ilsValue.calculate(input);
         System.out.println(value);//Print result of convert
         MyList.add(value);//Add result to list of converts
+        System.out.println("Could not get rate from API using default rate...");
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
@@ -64,6 +65,7 @@ public class Main {
             double value = usdValue.calculate(input);
             System.out.println(value);//Print result of convert
             MyList.add(value);//Add result to list of converts
+        System.out.println("Could not get rate from API using default rate...");
             System.out.println("Start over Y/N?");
             Scanner scanner3 = new Scanner(System.in);
             String overAgain = scanner3.next();
@@ -85,6 +87,7 @@ public class Main {
         double value = usdValue.calculate(input);
         System.out.println(value);//Print result of convert
         MyList.add(value);//Add result to list of converts
+        System.out.println("Could not get rate from API using default rate...");
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
