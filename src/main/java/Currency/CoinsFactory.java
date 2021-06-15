@@ -8,6 +8,8 @@ public class CoinsFactory {
             return new ILS();
             case USD:
             return new USD();
+            case EUR:
+                return new EUR();
         }
         throw new RuntimeException("Should not have gotten here");
     }
