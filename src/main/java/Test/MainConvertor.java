@@ -1,17 +1,14 @@
+package Test;
 import Currency.*;
 import org.json.JSONObject;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
-public class Main {
+public class MainConvertor {
     /**List of results
      *
      */
@@ -76,25 +73,14 @@ public class Main {
      *
      */
 
-    private static void ilsToUsd() throws IOException {
+    public static void ilsToUsd() throws IOException {
         System.out.println("Please enter an amount to convert");
         Scanner scanner5 = new Scanner(System.in);
-        //double input = scanner5.nextDouble();
+        double input = scanner5.nextDouble();
 //        fromCode = "NIS";
 //        toCode = "USD";
 //        amount = input;
        // sendHttpGETRequest();
-        do {
-            if (scanner5.hasNextDouble()){
-                value1 = scanner5.nextDouble();
-                isValue=true;
-            }else {
-                System.out.println("Error: Entered amount should be double");
-                isValue=false;
-                scanner5.next();
-            }
-        } while (! (isValue));
-        //System.out.println(value1);
         Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
         double value = ilsValue.calculate(value1);//value1 instend input
         System.out.println(value);//Print result of convert
@@ -238,33 +224,6 @@ public class Main {
         System.out.println("Welcome to currency convertor");
         chooseProgram();
             }
-
-//            @Test (priority = 1)
-//            void enteredValue() {
-//                do {
-//                    if (scanner5.hasNextDouble()){
-//                        value = scanner5.nextDouble();
-//                        isValue=true;
-//                    }else {
-//                        System.out.println("Error: Entered amount should be double");
-//                        isValue=false;
-//                        scanner5.next();
-//                    }
-//                } while (! (isValue));
-//                System.out.println(value);
-//            }
-
-//            @Test (priority = 2)
-//            void assertResult(){
-//
-//            }
-//
-//            @Test (priority = 3)
-//            void contentResult(){
-//
-//            }
-
-
         }
 
 
