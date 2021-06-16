@@ -1,46 +1,102 @@
 import Currency.*;
+import org.json.JSONObject;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
     /**List of results
      *
      */
-    private static ArrayList<Double> MyList = new ArrayList<>();
+    private static ArrayList MyList = new ArrayList();
+    static String fromCode, toCode;
+    static double amount;
+    static double input;
+    Scanner scanner5 = new Scanner(System.in);
+    static double value1;
+    static boolean isValue;
 
     /** If user choose start over the convertor
      *
      */
-    private static void startOver() {
+    private static void startOver() throws IOException {
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
+        System.out.println("3. Shekels to Euro");
         Scanner scanner1 = new Scanner(System.in);
         int choose = scanner1.nextInt();
         if (choose == 1) {
             ilsToUsd();
         } else if (choose == 2) {
             usdToils();
+        }else if(choose == 3){
+            ilsToEur();
         } else {
             System.out.println("Invalid choice, please try again");
+        }
+    }
+
+    /**
+     * Method to get API currency
+     */
+    private static void sendHttpGETRequest() throws IOException {
+        String GET_URL = "http://data.fixer.io/api/latest?access_key=3976ca43b78589e6bf1d3342950d930d&base=" + toCode + "&symbols=" +fromCode;
+        URL url = new URL(GET_URL);
+        HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+        httpURLConnection.setRequestMethod("GET");
+        int responseCode = httpURLConnection.getResponseCode();
+        if(responseCode == HttpURLConnection.HTTP_OK) { //success
+            BufferedReader in = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+
+            while((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            } in.close();
+            JSONObject obj = new JSONObject(response.toString());
+            double exchangeRate = obj.getJSONObject("rates").getDouble(fromCode);
+            System.out.println(obj.getJSONObject("rates"));
+            System.out.println(exchangeRate);
+            System.out.println();
+            System.out.println(amount + fromCode + " = " + amount/exchangeRate + toCode);
+        } else {
+            System.out.println("GET request failed");
         }
     }
 
     /** If user choose 1 shekels to dollars
      *
      */
-    private static void ilsToUsd() {
+
+    private static void ilsToUsd() throws IOException {
         System.out.println("Please enter an amount to convert");
-        Scanner scanner2 = new Scanner(System.in);
-        double input = scanner2.nextDouble();
+        Scanner scanner5 = new Scanner(System.in);
+        //double input = scanner5.nextDouble();
+//        fromCode = "NIS";
+//        toCode = "USD";
+//        amount = input;
+       // sendHttpGETRequest();
+        do {
+            if (scanner5.hasNextDouble()){
+                value1 = scanner5.nextDouble();
+                isValue=true;
+            }else {
+                System.out.println("Error: Entered amount should be double");
+                isValue=false;
+                scanner5.next();
+            }
+        } while (! (isValue));
+        //System.out.println(value1);
         Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
-        double value = ilsValue.calculate(input);
+        double value = ilsValue.calculate(value1);//value1 instend input
         System.out.println(value);//Print result of convert
         MyList.add(value);//Add result to list of converts
         System.out.println("Could not get rate from API using default rate...");
@@ -54,10 +110,12 @@ public class Main {
         }
     }
 
+
+
     /**If user choose 2, dollars to shekels
      *
      */
-    private static void usdToils() {
+    private static void usdToils() throws IOException {
             System.out.println("Please enter an amount to convert");
             Scanner scanner5 = new Scanner(System.in);
             double input = scanner5.nextDouble();
@@ -79,7 +137,7 @@ public class Main {
     /**If user choose 3, shekels to euro
      *
      */
-    private static void ilsToEur() {
+    private static void ilsToEur() throws IOException {
         System.out.println("Please enter an amount to convert");
         Scanner scanner5 = new Scanner(System.in);
         double input = scanner5.nextDouble();
@@ -101,7 +159,7 @@ public class Main {
     /**Choosing amount program
      *
      */
-    private static void chooseProgram(){
+    private static void chooseProgram() throws IOException {
         System.out.println("Please choose an option (1/2):");
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
@@ -129,7 +187,7 @@ public class Main {
                 System.out.println(MyList.get(i));
         }
         /**
-         * Creating Result.txt file with list of converstions
+         * Creating Result.txt file with list of conversations
          */
         FileWriter newFile = null;
         try {
@@ -171,7 +229,7 @@ public class Main {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         /**
          * This is start point of my Code
          * @author Denis Kozyra
@@ -182,13 +240,20 @@ public class Main {
             }
 
 //            @Test (priority = 1)
-//            void enterValue() {
-//                Main ilstousd = new Main();
-//                double imported =
-//                double expect =
-//
+//            void enteredValue() {
+//                do {
+//                    if (scanner5.hasNextDouble()){
+//                        value = scanner5.nextDouble();
+//                        isValue=true;
+//                    }else {
+//                        System.out.println("Error: Entered amount should be double");
+//                        isValue=false;
+//                        scanner5.next();
+//                    }
+//                } while (! (isValue));
+//                System.out.println(value);
 //            }
-//
+
 //            @Test (priority = 2)
 //            void assertResult(){
 //
