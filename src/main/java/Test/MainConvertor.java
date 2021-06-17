@@ -3,14 +3,12 @@ import Currency.*;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class MainConvertor {
-    /**List of results
+    /**Variables and List of results
      *
      */
     private static ArrayList MyList = new ArrayList<>();
@@ -76,19 +74,12 @@ public class MainConvertor {
 
     public static void ilsToUsd() throws IOException {
         System.out.println("Please enter an amount to convert");
-////        fromCode = "NIS";
-////        toCode = "USD";
-////        amount = input;
-//       // sendHttpGETRequest();
-        //MyList.add(value);//Add result to list of converts
-
+//      sendHttpGETRequest();
         Result result = new Result(); //Objected result that hold conversation flow and result
         result.conversionFlowILStoUSD();
         USD usd = new USD();
-
         MyList.add(result.value);
         MyList.add(usd.conversionFlow());
-        //System.out.println("Could not get rate from API using default rate...");
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
@@ -99,20 +90,17 @@ public class MainConvertor {
         }
     }
 
-
-
     /**If user choose 2, dollars to shekels
      *
      */
     private static void usdToils() throws IOException {
             System.out.println("Please enter an amount to convert");
-            //MyList.add(value);//Add result to list of converts
+//            sendHttpGETRequest();
             Result result = new Result(); //Objected result that hold conversation flow and result
             result.conversionFlowUSDtoILS();
             ILS ils = new ILS();
-        MyList.add(result.value);
-        MyList.add(ils.conversionFlow());
-        //System.out.println("Could not get rate from API using default rate...");
+            MyList.add(result.value);
+            MyList.add(ils.conversionFlow());
             System.out.println("Start over Y/N?");
             Scanner scanner3 = new Scanner(System.in);
             String overAgain = scanner3.next();
@@ -128,14 +116,12 @@ public class MainConvertor {
      */
     private static void ilsToEur() throws IOException {
         System.out.println("Please enter an amount to convert");
-
-       // MyList.add(value);//Add result to list of converts
+//        sendHttpGETRequest();
         Result result = new Result(); //Objected result that hold conversation flow and result
         result.conversionFlowILStoEUR();
         EUR eur = new EUR();
         MyList.add(result.value);
         MyList.add(eur.conversionFlow());
-        //System.out.println("Could not get rate from API using default rate...");
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
@@ -174,7 +160,7 @@ public class MainConvertor {
     private static void endScreen() {
         System.out.println("Thanks for using our currency convertor");
         for (int i = 0; i < MyList.size(); i++) {
-                System.out.println(MyList.get(i));
+                System.out.println(MyList.get(i)+" "+MyList.get(i=i+1));
         }
         /**
          * Creating Result.txt file with list of conversations
@@ -193,7 +179,8 @@ public class MainConvertor {
             int size = MyList.size();
             for (int i=0;i<size;i++) {
                 String str = MyList.get(i).toString();
-                newFile.write(str);
+                String str1 = MyList.get(i=i+1).toString();
+                newFile.write("Result "+ str +" Conversation flow " + str1);
                 if(i < size-1) {//This prevent creating a blank like at the end of the file
                     newFile.write("\n");
                 }
