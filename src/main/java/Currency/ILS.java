@@ -13,6 +13,8 @@ public class ILS extends Coin implements Serializable {
     @Override
     public  double calculate(double input) {
         return input * getValue();
-
+    }
+    public Object conversionFlow(){
+        return (" "+value + " USD to ILS");
     }
 }

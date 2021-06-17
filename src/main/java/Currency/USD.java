@@ -1,7 +1,5 @@
 package Currency;
 
-import com.sun.tools.javac.Main;
-
 import java.io.Serializable;
 
 public class USD extends Coin implements Serializable {
@@ -15,6 +13,10 @@ public class USD extends Coin implements Serializable {
     @Override
     public double calculate(double input) {
         return input * getValue();
+    }
+    public Object conversionFlow(){
+
+        return (" " + value + " ILS to USD");
 
     }
 }

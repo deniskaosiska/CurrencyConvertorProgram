@@ -6,13 +6,14 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MainConvertor {
     /**List of results
      *
      */
-    private static ArrayList MyList = new ArrayList();
+    private static ArrayList MyList = new ArrayList<>();
     static String fromCode, toCode;
     static double amount;
     static double input;
@@ -75,17 +76,19 @@ public class MainConvertor {
 
     public static void ilsToUsd() throws IOException {
         System.out.println("Please enter an amount to convert");
-        Scanner scanner5 = new Scanner(System.in);
-        double input = scanner5.nextDouble();
-//        fromCode = "NIS";
-//        toCode = "USD";
-//        amount = input;
-       // sendHttpGETRequest();
-        Coin ilsValue = CoinsFactory.getCoinInstance(Coins.USD);
-        double value = ilsValue.calculate(value1);//value1 instend input
-        System.out.println(value);//Print result of convert
-        MyList.add(value);//Add result to list of converts
-        System.out.println("Could not get rate from API using default rate...");
+////        fromCode = "NIS";
+////        toCode = "USD";
+////        amount = input;
+//       // sendHttpGETRequest();
+        //MyList.add(value);//Add result to list of converts
+
+        Result result = new Result(); //Objected result that hold conversation flow and result
+        result.conversionFlowILStoUSD();
+        USD usd = new USD();
+
+        MyList.add(result.value);
+        MyList.add(usd.conversionFlow());
+        //System.out.println("Could not get rate from API using default rate...");
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
@@ -103,13 +106,13 @@ public class MainConvertor {
      */
     private static void usdToils() throws IOException {
             System.out.println("Please enter an amount to convert");
-            Scanner scanner5 = new Scanner(System.in);
-            double input = scanner5.nextDouble();
-            Coin usdValue = CoinsFactory.getCoinInstance(Coins.ILS);
-            double value = usdValue.calculate(input);
-            System.out.println(value);//Print result of convert
-            MyList.add(value);//Add result to list of converts
-        System.out.println("Could not get rate from API using default rate...");
+            //MyList.add(value);//Add result to list of converts
+            Result result = new Result(); //Objected result that hold conversation flow and result
+            result.conversionFlowUSDtoILS();
+            ILS ils = new ILS();
+        MyList.add(result.value);
+        MyList.add(ils.conversionFlow());
+        //System.out.println("Could not get rate from API using default rate...");
             System.out.println("Start over Y/N?");
             Scanner scanner3 = new Scanner(System.in);
             String overAgain = scanner3.next();
@@ -125,13 +128,14 @@ public class MainConvertor {
      */
     private static void ilsToEur() throws IOException {
         System.out.println("Please enter an amount to convert");
-        Scanner scanner5 = new Scanner(System.in);
-        double input = scanner5.nextDouble();
-        Coin usdValue = CoinsFactory.getCoinInstance(Coins.EUR);
-        double value = usdValue.calculate(input);
-        System.out.println(value);//Print result of convert
-        MyList.add(value);//Add result to list of converts
-        System.out.println("Could not get rate from API using default rate...");
+
+       // MyList.add(value);//Add result to list of converts
+        Result result = new Result(); //Objected result that hold conversation flow and result
+        result.conversionFlowILStoEUR();
+        EUR eur = new EUR();
+        MyList.add(result.value);
+        MyList.add(eur.conversionFlow());
+        //System.out.println("Could not get rate from API using default rate...");
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
@@ -183,7 +187,7 @@ public class MainConvertor {
         }
         BufferedWriter bw = new BufferedWriter(newFile);
         /**
-         * Write all conversitions that user did
+         * Write all conversations that user did
          */
         try {
             int size = MyList.size();

@@ -14,9 +14,10 @@ import java.io.IOException;
 public class TestConvertor{
 
     @Test
-            void enteredValue() throws IOException {
+            void enteredValue() throws Exception {
         MainConvertor mainConvertor = new MainConvertor();
-         MainConvertor.ilsToUsd();
+
+         double res = Whitebox.invokeMethod(mainConvertor, "ilsToUsd");
                 do {
                     if (mainConvertor.scanner5.hasNextDouble()){
                         mainConvertor.value1 = mainConvertor.scanner5.nextDouble();
