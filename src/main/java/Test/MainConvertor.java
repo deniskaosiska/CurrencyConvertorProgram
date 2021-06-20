@@ -80,11 +80,13 @@ public class MainConvertor {
         USD usd = new USD();
         MyList.add(result.value);
         MyList.add(usd.conversionFlow());
+        input = result.input;
+        amount = result.value;
         System.out.println("Start over Y/N?");
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
         if (overAgain.equalsIgnoreCase("Y")) {
-            startOver();//Go to begining of program without Welcome
+            startOver();//Go to beginning of program without Welcome
         } else if (overAgain.equalsIgnoreCase("N")) {
              endScreen();//Go to Fourth screen(end screen)
         }
@@ -105,7 +107,7 @@ public class MainConvertor {
             Scanner scanner3 = new Scanner(System.in);
             String overAgain = scanner3.next();
             if (overAgain.equalsIgnoreCase("Y")) {
-                startOver();//Go to begining of program without Welcome
+                startOver();//Go to beginning of program without Welcome
             } else if (overAgain.equalsIgnoreCase("N")) {
                  endScreen();//Go to Fourth screen(end screen)
             }
@@ -126,7 +128,7 @@ public class MainConvertor {
         Scanner scanner3 = new Scanner(System.in);
         String overAgain = scanner3.next();
         if (overAgain.equalsIgnoreCase("Y")) {
-            startOver();//Go to begining of program without Welcome
+            startOver();//Go to beginning of program without Welcome
         } else if (overAgain.equalsIgnoreCase("N")) {
             endScreen();//Go to Fourth screen(end screen)
         }
@@ -136,7 +138,7 @@ public class MainConvertor {
      *
      */
     private static void chooseProgram() throws IOException {
-        System.out.println("Please choose an option (1/2):");
+        System.out.println("Please choose an option (1/3):");
         System.out.println("1. Dollars to Shekels");
         System.out.println("2. Shekels to Dollars");
         System.out.println("3. Shekels to Euro");
@@ -205,6 +207,7 @@ public class MainConvertor {
             e.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) throws IOException {
         /**
