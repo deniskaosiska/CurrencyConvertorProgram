@@ -1,6 +1,7 @@
 package Test;
 import Currency.*;
 import org.json.JSONObject;
+
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -79,6 +80,7 @@ public class MainConvertor {
         result.conversionFlowILStoUSD();
         USD usd = new USD();
         MyList.add(result.value);
+
         MyList.add(usd.conversionFlow());
         input = result.input;
         amount = result.value;
@@ -206,6 +208,8 @@ public class MainConvertor {
         } catch (Exception e){
             e.printStackTrace();
         }
+        TestConvertor testConvertor = new TestConvertor();
+        testConvertor.contentResult();
     }
 
 
