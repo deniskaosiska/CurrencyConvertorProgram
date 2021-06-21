@@ -1,5 +1,5 @@
 package Currency;
-import convert.ICalcualte;
+
 public class CoinsFactory {
     //factory that choosing amount from ENUM class and return value of amount
     public static Coin getCoinInstance(Coins coin){
